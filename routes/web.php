@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/approved/{id}', function ($id)
+{
+    event(new App\Events\RequestApproved($id)); // trigger event
+    return Response::make('Request Anda telah disetujui! ID#'.$id);
+});
